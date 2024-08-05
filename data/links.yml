@@ -1,12 +1,20 @@
 
+- title: Donate
+  text: Support the Vice President Kamala Harris campaign.
+  image: https://picsum.photos/400
+  url: https://secure.actblue.com/donate/web-hfp-august-2024
 
-- title: Code
-  text: Create tech tools to help elect Hillary Clinton.
-  image: http://dl.dropbox.com/u/11725/Screenshots/jh8xuhidsq3b.png
-  url: https://www.devprogress.us/
+# - title: Code
+#   text: Create tech tools to help elect Vice President Kamala Harris.
+#   image: https://picsum.photos/400
+#   url: https://www.devprogress.us/
 
+- title: Volunteer
+  text: Help Vice President Kamala Harris win the election.
+  image: https://picsum.photos/400
+  url: https://web.kamalaharris.com/forms/take-action-for-kamala-harris/?source=web_an_takeactionpage_20240726
 
 - title: Vote
   text: Speak up for Democracy.
-  image: https://m.hrc.onl/uniform/uploads/background_image/file/1924/victory-council-bg-080416a.png
+  image: https://picsum.photos/400
   url: https://www.google.com/search?q=register%20to%20vote

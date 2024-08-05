@@ -4,9 +4,12 @@ title = "Your Site Title"
 
 [params]
   description = "Your site description"
-
 [build]
-  writeStats = true
+      writeStats = true
+
+[build.buildStats]
+      enable = true
+
 
 [markup]
   [markup.highlight]
@@ -27,6 +30,8 @@ title = "Your Site Title"
   [[module.mounts]]
     source = "static"
     target = "static"
+
+
 
 [menu]
   [[menu.main]]
