@@ -15,6 +15,7 @@
       "p",
       "script",
       "section",
+      "span",
       "title"
     ],
     "classes": [
@@ -23,7 +24,9 @@
       "bg-opacity-50",
       "bg-white",
       "block",
+      "border-8",
       "container",
+      "drop-shadow-xl",
       "duration-300",
       "font-bold",
       "font-sans",
@@ -35,12 +38,15 @@
       "hover:text-blue-700",
       "inline-block",
       "mb-12",
+      "mb-4",
       "mb-6",
+      "mb-8",
       "md:grid-cols-2",
       "ml-2",
       "mt-2",
       "mt-4",
       "mx-auto",
+      "my-4",
       "overflow-hidden",
       "p-2",
       "p-6",
@@ -53,9 +59,13 @@
       "rounded-lg",
       "shadow-md",
       "text-2xl",
+      "text-3xl",
       "text-4xl",
+      "text-8xl",
       "text-blue-500",
+      "text-blue-600",
       "text-center",
+      "text-gray-600",
       "text-white",
       "text-xl",
       "transition-shadow"
@@ -63,6 +73,10 @@
     "ids": [
       "action-heading",
       "counter",
+      "counter-heading",
+      "primary-count",
+      "primary-unit",
+      "secondary-count",
       "tweetBtn"
     ]
   }
