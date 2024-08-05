@@ -1,28 +1,23 @@
 {{ define "main" }}
-<main class="wrapper">
-
-
-  <section aria-labelledby="counter-heading">
-
-    <div id="counter" class="counter">
-      <!-- Counter will be populated by JavaScript -->
-    </div>
+<main class="py-8">
+  <section aria-labelledby="counter-heading" class="mb-12">
+    <div id="counter" class="text-4xl font-bold text-center"></div>
   </section>
 
-  <section aria-labelledby="action-heading">
-    <h2 id="action-heading">What can I do to help?</h2>
-    <div class="card-grid">
+  <section aria-labelledby="action-heading" class="mb-12">
+    <h2 id="action-heading" class="text-2xl font-bold text-center mb-6">What can I do to help?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {{ range .Site.Data.links }}
-        <a href="{{ .url }}" class="card" style="background-image: url('{{ .image }}')">
-          <div class="card-content">
-            <h3 class="card-title">{{ .title }}</h3>
-            <p class="card-text">{{ .text }}</p>
+        <a href="{{ .url }}" class="block bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden">
+          <div class="p-6" style="background-image: url('{{ .image }}'); background-size: cover; background-position: center;">
+            <h3 class="text-xl font-semibold text-white bg-black bg-opacity-50 inline-block px-2 py-1 rounded">{{ .title }}</h3>
+            <p class="text-white bg-black bg-opacity-50 mt-2 p-2 rounded">{{ .text }}</p>
           </div>
         </a>
       {{ end }}
     </div>
   </section>
 
-  <p class="cta">Let's do it!</p>
+  <p class="text-center text-xl font-bold">Let's do it!</p>
 </main>
 {{ end }}
