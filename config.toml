@@ -1,9 +1,9 @@
 baseURL = "https://example.com"
 languageCode = "en-us"
-title = "Your Site Title"
+title = "2024.lol"
 
 [params]
-  description = "Your site description"
+  description = "Election day is November 5, 2024, 9:00 AM. Go Vote!"
 [build]
       writeStats = true
 
