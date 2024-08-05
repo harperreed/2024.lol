@@ -1,0 +1,28 @@
+{{ define "main" }}
+<main class="wrapper">
+
+
+  <section aria-labelledby="counter-heading">
+
+    <div id="counter" class="counter">
+      <!-- Counter will be populated by JavaScript -->
+    </div>
+  </section>
+
+  <section aria-labelledby="action-heading">
+    <h2 id="action-heading">What can I do to help?</h2>
+    <div class="card-grid">
+      {{ range .Site.Data.links }}
+        <a href="{{ .url }}" class="card" style="background-image: url('{{ .image }}')">
+          <div class="card-content">
+            <h3 class="card-title">{{ .title }}</h3>
+            <p class="card-text">{{ .text }}</p>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <p class="cta">Let's do it!</p>
+</main>
+{{ end }}

@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <p>
+    <a id="tweetBtn"></a>
+  </p>
+  <p>
+    <a href="http://twitter.com/harper">@harper</a> <a href="http://twitter.com/aaronsalmon">@aaronsalmon</a> <a href="https://github.com/harperreed/2016">Improve This Page</a>
+  </p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<script src="{{ "js/requestAnimationFrame.js" | relURL }}"></script>
+<script src="{{ "js/json2.js" | relURL }}"></script>
+<script src="{{ "js/countdown.js" | relURL }}"></script>
+<script src="{{ "js/2016.js" | relURL }}"></script>
