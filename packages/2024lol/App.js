@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ScrollView, Linking, useWindowDimensions, Touch
 import { StatusBar } from 'expo-status-bar';
 import Countdown from './components/Countdown';
 import ActionCard from './components/ActionCard';
+import { Ionicons } from '@expo/vector-icons';
 import SocialShareButtons from './components/SocialShareButtons';
 import Footer from './components/Footer';
 
@@ -88,6 +89,7 @@ export default function App() {
             <Text style={styles.subtitle}>Election day is November 5, 2024, 9:00 AM</Text>
             {!isMobile && (
               <TouchableOpacity style={styles.fullscreenButton} onPress={toggleFullscreen}>
+              <Ionicons name="expand-outline" size={24} color="white" />
                 <Text style={styles.fullscreenButtonText}>Enter Fullscreen</Text>
               </TouchableOpacity>
             )}
@@ -145,15 +147,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   fullscreenButton: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: '#2563eb',
-    borderRadius: 5,
-  },
-  fullscreenButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+      padding: 10,
+      backgroundColor: '#2563eb',
+      borderRadius: 5,
+    },
+    fullscreenButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+      marginLeft: 5,
+    },
   fullscreenCountdown: {
     flex: 1,
     justifyContent: 'center',
