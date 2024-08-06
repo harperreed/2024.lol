@@ -18,19 +18,19 @@ export default function App() {
       title: 'Donate',
       text: 'Support the Vice President Kamala Harris campaign.',
       url: 'https://secure.actblue.com/donate/web-hfp-august-2024',
-      imageSource: require('./assets/images/donate.jpg'),
+      imageSource: require('./assets/images/donate.webp'),
     },
     {
       title: 'Volunteer',
       text: 'Help Vice President Kamala Harris win the election.',
       url: 'https://web.kamalaharris.com/forms/take-action-for-kamala-harris/?source=web_an_takeactionpage_20240726',
-      imageSource: require('./assets/images/volunteer.jpg'),
+      imageSource: require('./assets/images/volunteer.webp'),
     },
     {
       title: 'Vote',
       text: 'Speak up for Democracy.',
       url: 'https://www.google.com/search?q=register%20to%20vote',
-      imageSource: require('./assets/images/vote.jpg'),
+      imageSource: require('./assets/images/vote.webp'),
     },
   ];
 
