@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, useWindowDimensions } from 'react-native';
 
 const ELECTION_DATE = new Date(2024, 10, 5, 9, 0, 0);
 
 const Countdown = ({ onCountdownUpdate }) => {
   const [timeLeft, setTimeLeft] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { width } = useWindowDimensions();
+  const isMobile = width < 600;
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -72,14 +74,14 @@ const Countdown = ({ onCountdownUpdate }) => {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, isMobile && styles.containerMobile]}>
         <ActivityIndicator size="large" color="#2563eb" />
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isMobile && styles.containerMobile]}>
       {renderMainUnit()}
       {renderSubUnits()}
       <Text style={styles.title}>Until Election Day</Text>
@@ -100,7 +102,15 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 200, // Add this to maintain consistent height during loading
+    minHeight: 200,
+  },
+  containerMobile: {
+    borderRadius: 0,
+    shadowColor: 'transparent',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
   title: {
     fontSize: 24,
