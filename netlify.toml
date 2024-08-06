@@ -1,6 +1,6 @@
 [build]
 publish = "packages/2024lol/dist"
-command = "cd packages/2024lol; yarn; npx expo export --platform web"
+command = "cd packages/2024lol; yarn; yarn build:web"
 
 [build.environment]
 HUGO_VERSION = "0.121.2"

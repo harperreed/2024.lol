@@ -26,6 +26,8 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "name": "2024 Election Countdown",
+      "output": "single",
+      "bundler": "metro",
       "shortName": "2024 Countdown",
       "description": "Countdown to the 2024 US Presidential Election",
       "lang": "en",
@@ -36,12 +38,12 @@
       "orientation": "portrait",
       "icons": [
         {
-          "src": "./assets/icon-192.png",
+          "src": "./assets/icon.png",
           "sizes": "192x192",
           "type": "image/png"
         },
         {
-          "src": "./assets/icon-512.png",
+          "src": "./assets/icon.png",
           "sizes": "512x512",
           "type": "image/png"
         }
