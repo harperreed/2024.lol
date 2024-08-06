@@ -32,7 +32,7 @@ description = 'Generate a llm_output file'
 # you can specify a multiline script instead of individual commands
 run = """
 #!/usr/bin/env bash
-repo2txt --exclude-dir public resources node_modules --ignore-files package-lock.json yarn.lock
+repo2txt --exclude-dir public resources node_modules dist --ignore-files package-lock.json yarn.lock
 """
 
 [tasks.copy_llm_output]

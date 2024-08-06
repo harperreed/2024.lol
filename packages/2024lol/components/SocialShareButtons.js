@@ -61,13 +61,14 @@ const SocialShareButtons = ({ days, hours }) => {
 
     for (let i = 0; i < socialPlatforms.length; i += buttonsPerRow) {
       const rowButtons = socialPlatforms.slice(i, i + buttonsPerRow).map((platform) => (
-        <SocialShareButton
-          key={platform.name}
-          icon={platform.icon}
-          color={platform.color}
-          name={platform.name}
-          onPress={() => shareOnPlatform(platform.shareUrl)}
-        />
+        <View key={platform.name} style={styles.buttonWrapper}>
+          <SocialShareButton
+            icon={platform.icon}
+            color={platform.color}
+            name={platform.name}
+            onPress={() => shareOnPlatform(platform.shareUrl)}
+          />
+        </View>
       ));
 
       buttonRows.push(
@@ -95,6 +96,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+    flexWrap: 'wrap',
+  },
+  buttonWrapper: {
+    flexBasis: '48%',
+    marginBottom: 10,
   },
   button: {
     flexDirection: 'row',
@@ -103,7 +109,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     minWidth: 120,
-    marginHorizontal: 5,
   },
   buttonText: {
     color: 'white',
