@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "2024 Election Countdown",
+    "slug": "2024lol",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "2024 Election Countdown",
+      "shortName": "2024 Countdown",
+      "description": "Countdown to the 2024 US Presidential Election",
+      "lang": "en",
+      "themeColor": "#2563eb",
+      "backgroundColor": "#ffffff",
+      "startUrl": "/",
+      "display": "standalone"
+    }
+  }
+}
