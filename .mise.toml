@@ -1,0 +1,46 @@
+[tasks.clean_llm_outputs]
+run = "find . -name 'output.txt' -print -delete"
+description = 'Remove all the various output.txts'
+hide = true # hide this task from the list
+
+[tasks.clean_node_modules]
+run = "find . -name 'node_modules' -print -delete"
+description = 'Remove all the node_modules'
+hide = true # hide this task from the list
+
+[tasks.clean_public]
+run = "find . -name 'public' -print -delete"
+description = 'Remove all the node_modules'
+hide = true # hide this task from the list
+
+[tasks.clean]
+depends = ['clean_llm_outputs', 'clean_node_modules', 'clean_public']
+description = 'Clean up the project: remove all the output.txts and node_modules'
+# run = "cargo clean" # runs as a shell command
+
+[tasks.generate_readme]
+depends = ['llm_output']
+description = 'Generate a readme file'
+# you can specify a multiline script instead of individual commands
+run = """
+#!/usr/bin/env bash
+cat output.txt | llm -t readme-gen > README.md
+"""
+
+[tasks.llm_output]
+description = 'Generate a llm_output file'
+# you can specify a multiline script instead of individual commands
+run = """
+#!/usr/bin/env bash
+repo2txt --exclude-dir public resources node_modules --ignore-files package-lock.json yarn.lock
+"""
+
+[tasks.copy_llm_output]
+depends = ['llm_output']
+description = 'Copy llm_output file to copy and paste buffer'
+# you can specify a multiline script instead of individual commands
+run = """
+#!/usr/bin/env bash
+cat output.txt | pbcopy
+
+"""
