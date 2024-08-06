@@ -1,9 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 
-const ActionCard = ({ title, text, url, imageUrl, onPress }) => (
+const ActionCard = ({ title, text, url, imageSource, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
-    <ImageBackground source={{ uri: imageUrl }} style={styles.backgroundImage} imageStyle={styles.backgroundImageStyle}>
+    <ImageBackground
+      source={imageSource}
+      style={styles.backgroundImage}
+      imageStyle={styles.backgroundImageStyle}
+      resizeMode="cover"
+    >
       <View style={styles.overlay}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.text}>{text}</Text>

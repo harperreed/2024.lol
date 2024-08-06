@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Linking, useWindowDimensions } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
-const SocialShareButton = ({ icon, color, onPress }) => (
+const SocialShareButton = ({ icon, color, name, onPress }) => (
   <TouchableOpacity style={[styles.button, { backgroundColor: color }]} onPress={onPress}>
     {icon}
+    <Text style={styles.buttonText}>{name}</Text>
   </TouchableOpacity>
 );
 
@@ -64,6 +65,7 @@ const SocialShareButtons = ({ days, hours }) => {
           key={platform.name}
           icon={platform.icon}
           color={platform.color}
+          name={platform.name}
           onPress={() => shareOnPlatform(platform.shareUrl)}
         />
       ));
@@ -95,11 +97,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 8,
+    minWidth: 120,
+    marginHorizontal: 5,
+  },
+  buttonText: {
+    color: 'white',
+    marginLeft: 8,
+    fontWeight: 'bold',
   },
 });
 
