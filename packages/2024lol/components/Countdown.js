@@ -109,7 +109,7 @@ const Countdown = ({ onCountdownUpdate }) => {
       borderRadius: 10,
       marginBottom: 20,
       shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
+      shadowOffset: { width: 0, height: 5 },
       shadowOpacity: 0.1,
       shadowRadius: 4,
       elevation: 3,
@@ -133,7 +133,11 @@ const Countdown = ({ onCountdownUpdate }) => {
       minHeight: 200,
     },
     contentMobile: {
-      padding: 0,
+      paddingLeft: 0,
+      paddingRight: 0,
+      paddingTop: 0,
+      paddingBottom: 20,
+      marginBottom: 20,
     },
     title: {
       fontSize: 24,

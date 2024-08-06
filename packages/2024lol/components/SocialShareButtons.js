@@ -109,6 +109,10 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     minWidth: 120,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
   },
   buttonText: {
     color: 'white',
