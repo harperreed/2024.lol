@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, Linking, useWindowDimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, ScrollView, Linking, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Countdown from './components/Countdown';
 import ActionCard from './components/ActionCard';
+import { Ionicons } from '@expo/vector-icons';
 import SocialShareButtons from './components/SocialShareButtons';
 import Footer from './components/Footer';
 
-const BREAKPOINT_MOBILE = 600; // Define breakpoint for mobile devices
+const BREAKPOINT_MOBILE = 600;
 
 export default function App() {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const isMobile = width < BREAKPOINT_MOBILE;
   const [countdownData, setCountdownData] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
 
   const actions = [
     {
@@ -49,24 +70,39 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isFullscreen && styles.fullscreenContainer]}>
       <StatusBar style="auto" />
-      <ScrollView contentContainerStyle={[
-        styles.scrollContent,
-        isMobile ? styles.scrollContentMobile : styles.scrollContentDesktop
-      ]}>
-        <View style={styles.countdownSection}>
-          <Countdown onCountdownUpdate={setCountdownData} />
-          <Text style={styles.subtitle}>Election day is November 5, 2024, 9:00 AM</Text>
+      {isFullscreen ? (
+        <View style={styles.fullscreenCountdown}>
+          <Countdown onCountdownUpdate={setCountdownData} isFullscreen={isFullscreen} />
+          <TouchableOpacity style={styles.exitFullscreenButton} onPress={toggleFullscreen}>
+            <Text style={styles.exitFullscreenText}>Exit Fullscreen</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.contentSection}>
-          <Text style={styles.sectionTitle}>What can I do to help?</Text>
-          {renderActionCards()}
-          <Text style={styles.sectionTitle}>Share</Text>
-          <SocialShareButtons days={countdownData.days} hours={countdownData.hours} />
-          <Footer />
-        </View>
-      </ScrollView>
+      ) : (
+        <ScrollView contentContainerStyle={[
+          styles.scrollContent,
+          isMobile ? styles.scrollContentMobile : styles.scrollContentDesktop
+        ]}>
+          <View style={styles.countdownSection}>
+            <Countdown onCountdownUpdate={setCountdownData} isFullscreen={isFullscreen} />
+            <Text style={styles.subtitle}>Election day is November 5, 2024, 9:00 AM</Text>
+            {!isMobile && (
+              <TouchableOpacity style={styles.fullscreenButton} onPress={toggleFullscreen}>
+              <Ionicons name="expand-outline" size={24} color="white" />
+                <Text style={styles.fullscreenButtonText}>Enter Fullscreen</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+          <View style={styles.contentSection}>
+            <Text style={styles.sectionTitle}>What can I do to help?</Text>
+            {renderActionCards()}
+            <Text style={styles.sectionTitle}>Share</Text>
+            <SocialShareButtons days={countdownData.days} hours={countdownData.hours} />
+            <Footer />
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 }
@@ -75,6 +111,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f3f4f6',
+  },
+  fullscreenContainer: {
+    backgroundColor: '#000',
   },
   scrollContent: {
     flexGrow: 1,
@@ -88,7 +127,6 @@ const styles = StyleSheet.create({
   countdownSection: {
     alignItems: 'center',
     marginBottom: 30,
-    // paddingTop: 20,
   },
   contentSection: {
     padding: 20,
@@ -107,5 +145,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+  },
+  fullscreenButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 10,
+      padding: 10,
+      backgroundColor: '#2563eb',
+      borderRadius: 5,
+    },
+    fullscreenButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+      marginLeft: 5,
+    },
+  fullscreenCountdown: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  exitFullscreenButton: {
+    position: 'absolute',
+    bottom: 20,
+    padding: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: 5,
+  },
+  exitFullscreenText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
