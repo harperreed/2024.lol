@@ -97,6 +97,7 @@ export default function App() {
     },
     scrollContentMobile: {
       padding: 0,
+
     },
     countdownSection: {
       alignItems: 'center',
