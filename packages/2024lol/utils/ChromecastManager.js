@@ -8,7 +8,7 @@ const ChromecastManager = () => {
   useEffect(() => {
     // Initialize Google Cast SDK
     GoogleCast.initializeWithOptions({
-      receiverApplicationId: 'YOUR_RECEIVER_APP_ID', // Use the ID provided by Google for your receiver app
+      receiverApplicationId: process.env.REACT_APP_RECEIVER_ID, // Use the ID provided by Google for your receiver app
     });
 
     // Add listener for cast state changes
@@ -20,3 +20,8 @@ const ChromecastManager = () => {
     return () => {
       // Remove listener when component unmounts
       listener.remove();
+    };
+  }, []);
+
+  return <CastButton style={{ width: 24, height: 24 }} />;
+};
