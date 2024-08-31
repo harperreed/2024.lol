@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, ScrollView, Linking, useWindowDimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, useWindowDimensions, TouchableOpacity, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Countdown from './components/Countdown';
 import ActionCard from './components/ActionCard';
@@ -16,20 +16,24 @@ export default function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
+    if (Platform.OS === 'web') {
+      const handleFullscreenChange = () => {
+        setIsFullscreen(!!document.fullscreenElement);
+      };
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }
   }, []);
 
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
+    if (Platform.OS === 'web') {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
       }
     }
   };
@@ -62,7 +66,6 @@ export default function App() {
           <ActionCard
             key={index}
             {...action}
-            onPress={() => Linking.openURL(action.url)}
           />
         ))}
       </View>
@@ -87,7 +90,7 @@ export default function App() {
           <View style={styles.countdownSection}>
             <Countdown onCountdownUpdate={setCountdownData} isFullscreen={isFullscreen} />
             <Text style={styles.subtitle}>Election day is November 5, 2024, 9:00 AM</Text>
-            {!isMobile && (
+            {!isMobile && Platform.OS === 'web' && (
               <TouchableOpacity style={styles.fullscreenButton} onPress={toggleFullscreen}>
               <Ionicons name="expand-outline" size={24} color="white" />
                 <Text style={styles.fullscreenButtonText}>Enter Fullscreen</Text>

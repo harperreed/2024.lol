@@ -1,12 +1,20 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, useWindowDimensions, Platform } from 'react-native';
+import { A } from '@expo/html-elements';
 
-const ActionCard = ({ title, text, url, imageSource, onPress }) => {
+const ActionCard = ({ title, text, url, imageSource }) => {
   const { width } = useWindowDimensions();
   const isMobile = width < 600;
 
+  const CardWrapper = Platform.OS === 'web' ? A : View;
+
   return (
-    <TouchableOpacity style={[styles.card, isMobile && styles.cardMobile]} onPress={onPress}>
+    <CardWrapper
+      style={[styles.card, isMobile && styles.cardMobile]}
+      href={Platform.OS === 'web' ? url : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <ImageBackground
         source={imageSource}
         style={styles.backgroundImage}
@@ -17,7 +25,7 @@ const ActionCard = ({ title, text, url, imageSource, onPress }) => {
           <Text style={styles.text}>{text}</Text>
         </View>
       </ImageBackground>
-    </TouchableOpacity>
+    </CardWrapper>
   );
 };
 
@@ -32,7 +40,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 10,
-
+    textDecoration: 'none',
   },
   cardMobile: {
     width: '100%',
