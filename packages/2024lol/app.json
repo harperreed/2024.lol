@@ -16,6 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.2024lol",
       "infoPlist": {
         "NSBonjourServices": [
           "_googlecast._tcp",
@@ -24,6 +25,7 @@
       }
     },
     "android": {
+      "package": "com.yourcompany.2024lol",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -34,7 +36,12 @@
       ]
     },
     "plugins": [
-      "react-native-google-cast"
+      [
+        "react-native-google-cast",
+        {
+          "appId": "YOUR_CHROMECAST_APP_ID"
+        }
+      ]
     ],
     "web": {
       "favicon": "./assets/favicon.png",

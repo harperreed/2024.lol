@@ -15,7 +15,7 @@ export default function App() {
   const isMobile = width < BREAKPOINT_MOBILE;
   const [countdownData, setCountdownData] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const { isCasting, startCasting, stopCasting, updateCastData, CastButton } = ChromecastManager();
+  const { isCasting, startCasting, stopCasting, updateCastData } = ChromecastManager();
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -119,7 +119,9 @@ export default function App() {
                   <Text style={styles.fullscreenButtonText}>Enter Fullscreen</Text>
                 </TouchableOpacity>
               )}
-              <CastButton style={styles.castButton} />
+              <TouchableOpacity style={styles.chromecastButton} onPress={toggleChromecast}>
+                <Text style={styles.chromecastButtonText}>{isCasting ? 'Stop Casting' : 'Cast to TV'}</Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.contentSection}>
