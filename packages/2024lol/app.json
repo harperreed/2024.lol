@@ -15,14 +15,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSBonjourServices": [
+          "_googlecast._tcp",
+          "_YOUR_APPLICATION_ID._googlecast._tcp"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE"
+      ]
     },
+    "plugins": [
+      "react-native-google-cast"
+    ],
     "web": {
       "favicon": "./assets/favicon.png",
       "name": "2024 Election Countdown",
