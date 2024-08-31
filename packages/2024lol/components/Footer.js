@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, View, Text, Platform } from 'react-native';
+import { A } from '@expo/html-elements';
 
 const Footer = () => {
   const links = [
@@ -7,21 +8,21 @@ const Footer = () => {
     { title: 'Help Improve This Page', url: 'https://github.com/harperreed/2024.lol' },
   ];
 
-  const handleLinkPress = (url) => {
-    Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
-  };
+  const LinkComponent = Platform.OS === 'web' ? A : Text;
 
   return (
     <View style={styles.footer}>
       <View style={styles.linksContainer}>
         {links.map((link, index) => (
-          <TouchableOpacity
+          <LinkComponent
             key={index}
-            onPress={() => handleLinkPress(link.url)}
-            style={styles.linkButton}
+            href={Platform.OS === 'web' ? link.url : undefined}
+            style={styles.linkText}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Text style={styles.linkText}>{link.title}</Text>
-          </TouchableOpacity>
+            {link.title}
+          </LinkComponent>
         ))}
       </View>
       <Text style={styles.copyright}>
@@ -44,13 +45,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginBottom: 10,
   },
-  linkButton: {
-    marginHorizontal: 5,
-    marginVertical: 2,
-  },
   linkText: {
     color: '#2563eb',
     fontSize: 14,
+    marginHorizontal: 5,
+    marginVertical: 2,
+    textDecoration: 'none',
   },
   copyright: {
     fontSize: 12,

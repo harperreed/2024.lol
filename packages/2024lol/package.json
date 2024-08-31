@@ -10,6 +10,7 @@
     "build:web": "expo export -p web && npx workbox-cli generateSW workbox-config.js"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.10.1",
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.2",
     "expo": "~51.0.24",

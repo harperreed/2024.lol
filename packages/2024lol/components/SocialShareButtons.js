@@ -1,13 +1,24 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Linking, useWindowDimensions } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Linking, useWindowDimensions, Platform } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { A } from '@expo/html-elements';
 
-const SocialShareButton = ({ icon, color, name, onPress }) => (
-  <TouchableOpacity style={[styles.button, { backgroundColor: color }]} onPress={onPress}>
-    {icon}
-    <Text style={styles.buttonText}>{name}</Text>
-  </TouchableOpacity>
-);
+const SocialShareButton = ({ icon, color, name, onPress, url }) => {
+  const ButtonComponent = Platform.OS === 'web' ? A : TouchableOpacity;
+
+  return (
+    <ButtonComponent
+      style={[styles.button, { backgroundColor: color }]}
+      onPress={Platform.OS !== 'web' ? onPress : undefined}
+      href={Platform.OS === 'web' ? url : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {icon}
+      <Text style={styles.buttonText}>{name}</Text>
+    </ButtonComponent>
+  );
+};
 
 const SocialShareButtons = ({ days, hours }) => {
   const windowWidth = useWindowDimensions().width;
@@ -25,7 +36,11 @@ const SocialShareButtons = ({ days, hours }) => {
   const shareUrl = "https://2024.lol";
 
   const shareOnPlatform = (url) => {
-    Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+    if (Platform.OS === 'web') {
+      window.open(url, '_blank');
+    } else {
+      Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+    }
   };
 
   const socialPlatforms = [
@@ -67,6 +82,7 @@ const SocialShareButtons = ({ days, hours }) => {
             color={platform.color}
             name={platform.name}
             onPress={() => shareOnPlatform(platform.shareUrl)}
+            url={platform.shareUrl}
           />
         </View>
       ));
@@ -113,6 +129,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 10,
+    textDecoration: 'none',
   },
   buttonText: {
     color: 'white',
